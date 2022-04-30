@@ -1,0 +1,34 @@
+* body{
+  padding: 0;
+  margin: 0;
+  background-color: #E3D77B !important;
+}
+
+/* .itinerario{
+  position: absolute;
+  width: max-content;
+  background-color: brown;
+}
+
+.links{
+  background-color: aqua;
+  display: flex;
+  height: 100%;
+  padding: 2rem;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: ;
+
+  flex-wrap: wrap;
+}
+
+.links__columm{
+
+  margin: 0 2rem;
+
+}
+
+.links li{
+  list-style: none;
+
+} */

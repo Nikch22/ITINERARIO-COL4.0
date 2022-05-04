@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="icon" type="image/png" href="./col40.png">
   <title>ITINERARIO</title>
+  <script type="text/javascript" src="instascan.min.js"></script>
 </head>
 <body>
   <script src="./main.js"></script>
@@ -65,8 +66,32 @@
           <li class="list-group-item h3 mx-auto my-md-5 bg-light rounded-pill"><a href='https://www.col40.co/750/w3-propertyvalue-198253.html#data=%7B"filter":"","page":0%7D' class="text-info" target="_blank">DÍA 1</a></li>
           <li class="list-group-item h3 mx-auto my-md-5 bg-light rounded-pill"><a href='https://www.col40.co/750/w3-propertyvalue-198254.html#data=%7B"filter":"","page":0%7D' class="text-info" target="_blank">DÍA 2</a></li>
           <li class="list-group-item h3 mx-auto my-md-5 bg-light rounded-pill"><a href='https://www.col40.co/750/w3-propertyvalue-198255.html#data=%7B"filter":"","page":0%7D' class="text-info" target="_blank">DÍA 3</a></li> 
+          <div id="scan">
+
+          </div>
 
           <input type="file" capture="camera" class="bg-light rounded-pill text-info">
+          <video id="preview"></video>
+          <script type="text/javascript">
+            const scan = document.querySelector('#scan');
+
+            let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+            scanner.addListener('scan', function (content) {
+              console.log(content);
+            });
+            Instascan.Camera.getCameras().then(function (cameras) {
+              if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+                console.log("camara encontrada");
+                scan.innerHTML =`<li class="list-group-item h3 mx-auto my-md-5 bg-light rounded-pill"><a href='${content}' class="text-info" target="_blank">Scaneado</a></li>`; 
+
+              } else {
+                console.error('No cameras found.');
+              }
+            }).catch(function (e) {
+              console.error(e);
+            });
+          </script>
         </ul>
         <h1 id="horaActual"class="mx-auto my-md-2 text-info"></h1>
 
